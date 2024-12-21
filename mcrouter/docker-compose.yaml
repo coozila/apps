@@ -8,7 +8,7 @@
 
 # ----------------------------------------------------------------------------------#
 
-#   APPS NETWORK    ----------------------------------------------------------------#
+#   APPS NETWORK    ---------------------------------------------------------------#
 
 networks:                                                                           #
 
@@ -19,7 +19,7 @@ networks:                                                                       
 
 # ----------------------------------------------------------------------------------#
 
-#   APPS SERVICES    ---------------------------------------------------------------#
+#   APPS SERVICES    --------------------------------------------------------------#
 
 services:                                                                           #
 
@@ -54,31 +54,31 @@ services:                                                                       
             - dragonflydata1:/data
 
             #
-            #   Local time
+            # Local time
             #
 
             - /etc/localtime:/etc/localtime:ro
 
         networks:
             #
-            #   Connect to the private network
+            # Connect to the private network
             #
 
             - apps_private_network
 
         extra_hosts:
             #
-            #   Add extra host entries for internal resolution
+            # Add extra host entries for internal resolution
             #
 
             - "host.docker.internal:host-gateway"
             - "${LOCAL_LISTEN_ADDR:-127.0.0.1}:host-gateway"
 
             #
-            #   Setup DRAGONFLYDB_HOSTNAME variable in .env file
+            # Setup APPS_HOSTNAME variable in .env file
             #
 
-            - "${DRAGONFLYDB_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
+            - "${APPS_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
 
 
     #   DRAGONFLY SERVER 2    ------------------------------------------------------#
@@ -115,24 +115,24 @@ services:                                                                       
 
         networks:
             #
-            #   Connect to the private network
+            # Connect to the private network
             #
 
             - apps_private_network
 
         extra_hosts:
             #
-            #   Add extra host entries for internal resolution
+            # Add extra host entries for internal resolution
             #
 
             - "host.docker.internal:host-gateway"
             - "${LOCAL_LISTEN_ADDR:-127.0.0.1}:host-gateway"
 
             #
-            #   Setup DRAGONFLYDB_HOSTNAME variable in .env file
+            # Setup APPS_HOSTNAME variable in .env file
             #
 
-            - "${DRAGONFLYDB_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
+            - "${APPS_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
 
 
     #   DRAGONFLY SERVER 3    ------------------------------------------------------#
@@ -170,47 +170,47 @@ services:                                                                       
 
         networks:
             #
-            #   Connect to the private network
+            # Connect to the private network
             #
 
             - apps_private_network
 
         extra_hosts:
             #
-            #   Add extra host entries for internal resolution
+            # Add extra host entries for internal resolution
             #
 
             - "host.docker.internal:host-gateway"
             - "${LOCAL_LISTEN_ADDR:-127.0.0.1}:host-gateway"
 
             #
-            #   Setup DRAGONFLYDB_HOSTNAME variable in .env file
+            # Setup APPS_HOSTNAME variable in .env file
             #
 
-            - "${DRAGONFLYDB_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
+            - "${APPS_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
 
 
     #   MVROUTER    ----------------------------------------------------------------#
 
     mcrouter:
-        image: coozila/mcrouter:${MCROUTER_VERSION:-40.0.0}
-        container_name: mcrouter-${MCROUTER_VERSION:-40.0.0}.${MCROUTER_HOSTNAME:-localhost}
+        image: coozila/mcrouter:${MCROUTER_VERSION}
+        container_name: mcrouter-${MCROUTER_VERSION}.${APPS_HOSTNAME:-localhost}
         platform: linux/amd64
         build:
             #
-            #   Set the build context to the social app directory
+            # Set the build context to the social app directory
             #
 
             context: ./${MCROUTER_VERSION}/
 
             #
-            #   Path to the Dockerfile, going up one directory
+            # Path to the Dockerfile, going up one directory
             #
 
             dockerfile: Dockerfile 
         links:
             #
-            #   Links to DragonflyDB instances
+            # Links to DragonflyDB instances
             #
 
             - dragonfly1:dragonfly1
@@ -227,24 +227,24 @@ services:                                                                       
 
         networks:
             #
-            #   Connect to the private network
+            # Connect to the private network
             #
 
             - apps_private_network
 
         extra_hosts:
             #
-            #   Add extra host entries for internal resolution
+            # Add extra host entries for internal resolution
             #
 
             - "host.docker.internal:host-gateway"
             - "${LOCAL_LISTEN_ADDR:-127.0.0.1}:host-gateway"
 
             #
-            #   Setup MCROUTER_HOSTNAME variable in .env file
+            # Setup APPS_HOSTNAME variable in .env file
             #
 
-            - "${MCROUTER_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
+            - "${APPS_HOSTNAME:-localhost}:${LOCAL_LISTEN_ADDR:-127.0.0.1}"
 
 
 # ----------------------------------------------------------------------------------#

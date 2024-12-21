@@ -1,6 +1,6 @@
-# Coozila Apps - DragonflyDB Cluster
+# Coozila! Apps - DragonflyDB Cluster
 
-## Coozila Package for Memcached Cluster with DragonFly
+## Coozila! Package for Memcached Cluster with DragonFly
 
 ### What is Memcached?
 
@@ -10,9 +10,13 @@ Memcached is a high-performance, distributed memory object caching system, gener
 
 DragonFly is a distributed database that provides a powerful, scalable, and fault-tolerant solution designed for high availability and performance. It is optimized for use cases that require efficient data retrieval and storage, making it an ideal complement to Memcached in clustered environments.
 
-### Overview of Memcached and DragonFly
+### What is McRouter?
 
-Memcached and DragonFly work together to provide a robust caching and database solution for high-demand applications. By utilizing Memcached for caching frequently accessed data, applications can significantly reduce response times and database load. DragonFly, with its distributed architecture, ensures that data is stored reliably and can be accessed quickly, supporting the demands of modern web applications.
+McRouter is a high-performance Memcached router developed by Facebook. It acts as a proxy between clients and Memcached servers, allowing for better load balancing and routing of requests. McRouter can be used to scale Memcached deployments efficiently, enabling applications to handle larger amounts of cached data and improving overall performance.
+
+### Overview of Memcached, DragonFly, and McRouter
+
+Memcached, DragonFly, and McRouter work together to provide a robust caching and database solution for high-demand applications. By utilizing Memcached for caching frequently accessed data, applications can significantly reduce response times and database load. DragonFly, with its distributed architecture, ensures that data is stored reliably and can be accessed quickly, while McRouter optimizes the routing of requests to Memcached servers.
 
 ---
 
@@ -20,14 +24,14 @@ Memcached and DragonFly work together to provide a robust caching and database s
 
 ```
 Copyright (C) 2009 - 2024 Coozila! MIT License
-See the full license at: [Coozila License](https://github.com/coozila/apps/license.md)
+See the full license at: [Coozila! License](https://github.com/coozila/apps/license.md)
 ```
 
 ---
 
 ## Project Structure
 
-- **Docker Compose Configuration**: Defines services for DragonflyDB and mcrouter.
+- **Docker Compose Configuration**: Defines services for DragonflyDB and McRouter.
 - **Networks**: Configured for application services.
 - **Volumes**: Data persistence for DragonflyDB instances.
 
@@ -47,9 +51,9 @@ Each instance:
 - Maps port `11211` to local ports `11212`, `11213`, and `11214`.
 - Persists data in separate volumes.
 
-### Mcrouter
+### McRouter
 
-- Image: `coozila/mcrouter:latest`
+- Image: `coozila/mcrouter:40.0.0`
 - Links to the three DragonflyDB instances.
 - Command configuration for routing operations.
 
@@ -66,16 +70,34 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Getting Started
 
-### 1. Clone the Repository
+### 1. Create the Private Network
 
-Clone the Coozila Apps repository to your local machine:
+Before building the containers and images, you must manually create the `apps_private_network`:
+
+```bash
+docker network create --driver bridge apps_private_network --subnet=172.16.0.0/16
+```
+
+### 2. Clone the Repository
+
+Clone the Coozila! Apps repository to your local machine:
 
 ```bash
 git clone https://github.com/coozila/apps.git
 cd apps/dragonflydb
 ```
 
-### 2. Launch the Application
+### 3. Prepare the Environment Variables
+
+Copy the example environment file and set the necessary variables:
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file to set the required environment variables.
+
+### 4. Launch the Application
 
 Run the following command to build the Docker images and launch the application:
 
@@ -83,14 +105,14 @@ Run the following command to build the Docker images and launch the application:
 docker compose up -d --build
 ```
 
-### 3. Accessing the Services
+### 5. Accessing the Services
 
 - DragonflyDB instances:
   - Instance 1: [http://127.0.0.1:11212](http://127.0.0.1:11212)
   - Instance 2: [http://127.0.0.1:11213](http://127.0.0.1:11213)
   - Instance 3: [http://127.0.0.1:11214](http://127.0.0.1:11214)
 
-- Mcrouter interface:
+- McRouter interface:
   - [http://127.0.0.1:11211](http://127.0.0.1:11211)
 
 ---
@@ -107,7 +129,7 @@ docker compose down
 
 ## Additional Documentation
 
-For more details, please refer to the official repository: [Coozila Apps](https://github.com/coozila/apps).
+For more details, please refer to the official repository: [Coozila! Apps](https://github.com/coozila/apps).
 
 ---
 
@@ -119,7 +141,7 @@ This software listing is packaged by Coozila!. The respective trademarks mention
 
 ## License
 
-This project is licensed under the MIT License. See the full license at: [Coozila License](https://github.com/coozila/apps/license.md).
+This project is licensed under the MIT License. See the full license at: [Coozila! License](https://github.com/coozila/apps/license.md).
 
 ---
 
