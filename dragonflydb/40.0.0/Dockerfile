@@ -1,13 +1,11 @@
 # ----------------------------------------------------------------------------------#
 #                                                                                   #
-#   Copyright (C) 2009 - 2024 Coozila! MIT License                                  #
-#   Version:  '40.0.0'                                                              #
+#   Copyright   (C) 2009 - 2024 Coozila! MIT Locense                                #
+#   Coozila! Team    lab@coozila.com                                                #
 #                                                                                   #
 # ----------------------------------------------------------------------------------#
 
 FROM ubuntu:bionic
-
-MAINTAINER mcrouter <mcrouter@fb.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 

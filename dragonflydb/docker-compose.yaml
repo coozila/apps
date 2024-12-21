@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------------#
 #                                                                                   #
-#   Copyright (C) 2009 - 2024 Coozila! MIT Locense                                  #
-#   Version:  '3.9'                                                                 #
+#   Copyright   (C) 2009 - 2024 Coozila! MIT Locense                                #
+#   Coozila! Team    lab@coozila.com                                                #
 #                                                                                   #
 # ----------------------------------------------------------------------------------#
 
@@ -14,7 +14,7 @@ networks:                                                                       
 
     #   Private network for application services    --------------------------------#
 
-    apps_private_network:
+    coozila_private_network:
         external: true
 
 # ----------------------------------------------------------------------------------#
@@ -64,7 +64,7 @@ services:                                                                       
             #   Connect to the private network
             #
 
-            - apps_private_network
+            - coozila_private_network
 
         extra_hosts:
             #
@@ -118,7 +118,7 @@ services:                                                                       
             #   Connect to the private network
             #
 
-            - apps_private_network
+            - coozila_private_network
 
         extra_hosts:
             #
@@ -173,7 +173,7 @@ services:                                                                       
             #   Connect to the private network
             #
 
-            - apps_private_network
+            - coozila_private_network
 
         extra_hosts:
             #
@@ -230,7 +230,7 @@ services:                                                                       
             #   Connect to the private network
             #
 
-            - apps_private_network
+            - coozila_private_network
 
         extra_hosts:
             #
