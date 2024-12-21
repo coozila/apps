@@ -4,6 +4,10 @@
 # Ignore all log files and their content, but keep the empty log files
 logs/*.log
 
+# Ignore the .env file in all subdirectories of apps
+apps/*/.env
 
 # Allow the .env.example file
+!.env.example
+
 !.env.example
