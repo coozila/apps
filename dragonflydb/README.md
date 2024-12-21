@@ -20,7 +20,7 @@ Memcached and DragonFly work together to provide a robust caching and database s
 
 ```
 Copyright (C) 2009 - 2024 Coozila! MIT License
-Version: '3.9'
+See the full license at: [Coozila License](https://github.com/coozila/apps/license.md)
 ```
 
 ---
@@ -119,9 +119,8 @@ This software listing is packaged by Coozila!. The respective trademarks mention
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the full license at: [Coozila License](https://github.com/coozila/apps/license.md).
 
 ---
 
 Happy coding!
-```
