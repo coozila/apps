@@ -1,6 +1,59 @@
-# mcrouter Docker Image Build Instructions
+# Coozila Apps - DragonflyDB Cluster
 
-This document provides instructions for building the Docker image for `mcrouter`.
+## Coozila Package for Memcached Cluster with DragonFly
+
+### What is Memcached?
+
+Memcached is a high-performance, distributed memory object caching system, generic in nature, but intended for use in speeding up dynamic web applications by alleviating database load. It is designed to cache data and reduce the number of times a database must be queried, thereby improving the speed and performance of applications.
+
+### What is DragonFly?
+
+DragonFly is a distributed database that provides a powerful, scalable, and fault-tolerant solution designed for high availability and performance. It is optimized for use cases that require efficient data retrieval and storage, making it an ideal complement to Memcached in clustered environments.
+
+### Overview of Memcached and DragonFly
+
+Memcached and DragonFly work together to provide a robust caching and database solution for high-demand applications. By utilizing Memcached for caching frequently accessed data, applications can significantly reduce response times and database load. DragonFly, with its distributed architecture, ensures that data is stored reliably and can be accessed quickly, supporting the demands of modern web applications.
+
+---
+
+## Copyright
+
+```
+Copyright (C) 2009 - 2024 Coozila! MIT License
+Version: '3.9'
+```
+
+---
+
+## Project Structure
+
+- **Docker Compose Configuration**: Defines services for DragonflyDB and mcrouter.
+- **Networks**: Configured for application services.
+- **Volumes**: Data persistence for DragonflyDB instances.
+
+## Services
+
+### DragonflyDB Servers
+
+Three instances of DragonflyDB are configured:
+
+1. **dragonfly1**
+2. **dragonfly2**
+3. **dragonfly3**
+
+Each instance:
+- Uses the image `docker.dragonflydb.io/dragonflydb/dragonfly`.
+- Sets memory lock limits.
+- Maps port `11211` to local ports `11212`, `11213`, and `11214`.
+- Persists data in separate volumes.
+
+### Mcrouter
+
+- Image: `coozila/mcrouter:latest`
+- Links to the three DragonflyDB instances.
+- Command configuration for routing operations.
+
+---
 
 ## Prerequisites
 
@@ -9,66 +62,66 @@ Before you begin, ensure you have the following installed on your system:
 - Docker
 - Docker Compose
 
-## Instructions
+---
 
-1. **Clone the Repository** (if you haven't already):
+## Getting Started
 
-   If you haven't cloned the repository, do so by running:
-   ```bash
-   git clone <repository-url>
-   cd <repository-directory>
-   ```
+### 1. Clone the Repository
 
-2. **Check Script Permissions**:
+Clone the Coozila Apps repository to your local machine:
 
-   Ensure that the `deps.sh` script in your `scripts` directory has the proper execution permissions:
-   ```bash
-   chmod +x scripts/deps.sh
-   ```
+```bash
+git clone https://github.com/coozila/apps.git
+cd apps/dragonflydb
+```
 
-3. **Verify Dockerfile Context**:
+### 2. Launch the Application
 
-   Ensure that the `scripts` directory is correctly structured in relation to your Dockerfile. The `source=scripts` in the `--mount` option should point to the correct path where the `scripts` directory resides.
+Run the following command to build the Docker images and launch the application:
 
-4. **Run Docker with Sufficient Privileges**:
+```bash
+docker compose up -d --build
+```
 
-   To avoid needing `sudo` every time you run Docker commands, add your user to the `docker` group:
-   ```bash
-   sudo usermod -aG docker $USER
-   ```
-   After running this command, log out and log back in for the changes to take effect.
+### 3. Accessing the Services
 
-5. **Check Docker Version**:
+- DragonflyDB instances:
+  - Instance 1: [http://127.0.0.1:11212](http://127.0.0.1:11212)
+  - Instance 2: [http://127.0.0.1:11213](http://127.0.0.1:11213)
+  - Instance 3: [http://127.0.0.1:11214](http://127.0.0.1:11214)
 
-   Ensure your Docker version is up to date. The `--mount` option requires a version that supports it:
-   ```bash
-   docker --version
-   ```
+- Mcrouter interface:
+  - [http://127.0.0.1:11211](http://127.0.0.1:11211)
 
-6. **Build the Docker Image**:
+---
 
-   Use the following command to build the Docker image for `mcrouter`:
-   ```bash
-   sudo docker compose build
-   ```
+## Cleanup
 
-7. **Inspect the Dockerfile**:
+To stop and remove all containers, networks, and volumes, run:
 
-   If you encounter issues during the build process, double-check the contents of your Dockerfile and ensure that the script is correctly referenced in the build context. Verify that paths and commands are correct.
+```bash
+docker compose down
+```
 
-## Troubleshooting
+---
 
-- **Permission Denied Errors**: If you encounter a permission denied error, ensure that all necessary scripts have the correct execution permissions.
+## Additional Documentation
 
-- **Network Issues**: If there are problems fetching packages, ensure that your Docker container has proper network access. You can also try using alternative Ubuntu mirrors.
+For more details, please refer to the official repository: [Coozila Apps](https://github.com/coozila/apps).
 
-- **Inspect Build Logs**: Look for warning or error messages in the build logs to identify issues with dependencies or configurations.
+---
 
-## Additional Notes
+## Trademarks
 
-- The `mcrouter` configuration can be modified in the `Dockerfile` and the `docker-compose.yml` file as needed.
-- For further assistance, feel free to reach out or consult the official [mcrouter documentation](https://github.com/facebook/mcrouter) for more details.
+This software listing is packaged by Coozila!. The respective trademarks mentioned in the offering are owned by the respective companies, and use of them does not imply any affiliation or endorsement.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
 
 Happy coding!
-
-This `README.md` file provides a comprehensive guide for users looking to build the `mcrouter` Docker image, with clear steps and troubleshooting tips included. You can customize the `<repository-url>` and `<repository-directory>` placeholders with your actual project details. If you need any further modifications or additional content, feel free to ask!
+```
