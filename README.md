@@ -6,7 +6,6 @@
     <a href="https://twitter.com/coozila"><img src="https://badgen.net/badge/twitter/@coozila/1DA1F2?icon&label" /></a>
     <a href="https://github.com/coozila/apps"><img src="https://badgen.net/github/stars/coozila/apps?icon=github" /></a>
     <a href="https://github.com/coozila/apps"><img src="https://badgen.net/github/forks/coozila/apps?icon=github" /></a>
-    <a href="https://github.com/coozila/apps/actions/workflows/ci-pipeline.yml"><img src="https://github.com/coozila/apps/actions/workflows/ci-pipeline.yml/badge.svg" /></a>
 </p>
 
 # The Coozila! APPS Library
