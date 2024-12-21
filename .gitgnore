@@ -1,0 +1,9 @@
+# Ignore the .env file
+.env
+
+# Ignore all log files and their content, but keep the empty log files
+logs/*.log
+
+
+# Allow the .env.example file
+!.env.example
