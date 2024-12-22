@@ -7,6 +7,7 @@
     <a href="https://github.com/coozila/apps"><img src="https://badgen.net/github/stars/coozila/apps?icon=github" /></a>
     <a href="https://github.com/coozila/apps"><img src="https://badgen.net/github/forks/coozila/apps?icon=github" /></a>
     <a href="https://facebook.com/coozila"><img src="https://badgen.net/badge/facebook/@coozila/1877F2?icon&label" /></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://badgen.net/static/license/MIT/blue" /></a>
 </p>
 
 # The Coozila! APPS Library
