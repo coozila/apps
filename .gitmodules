@@ -1,6 +1,3 @@
 [submodule "apps/dragonflydb"]
 	path = apps/dragonflydb
 	url = https://github.com/coozila/dragonflydb.git
-[submodule "dragonflydb"]
-	path = dragonflydb
-	url = https://github.com/coozila/dragonflydb.git
